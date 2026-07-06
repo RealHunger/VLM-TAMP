@@ -1,5 +1,146 @@
 # Long-Horizon Manipulation Planning Toolbox
 
+## GPT55 Chicken Soup Reproduction
+
+This fork contains the GPT55 VLM-TAMP chicken soup fixes, verification artifacts, and debugging notes from the July 2026 run.
+
+The compact successful run artifact is saved under:
+
+```text
+artifacts/gpt55_chicken_soup_success/
+```
+
+It includes:
+
+- `vlm-tamp.csv`: final planner result, ending with `1.0 (17 / 17)`.
+- `replay.mp4`: rendered PyBullet replay of the successful saved commands.
+- `planning_config.json`: saved planning configuration.
+- `llm_memory.json`: GPT55 subgoal memory used by the successful run.
+- `agent_memory.json`: agent-side execution memory for the successful run.
+
+### One-Command Replay
+
+From the workspace root that contains `pybullet_planning`, `kitchen-worlds`, `lisdf`, and `motion_planners`, run:
+
+```bash
+cd pybullet_planning
+source ~/miniconda3/etc/profile.d/conda.sh
+conda activate kitchen
+
+PYTHONPATH="$(pwd)/../kitchen-worlds/pddlstream:$(pwd):$(pwd)/../kitchen-worlds:$(pwd)/../lisdf:$(pwd)/../kitchen-worlds/pybullet_planning/motion:$PYTHONPATH" python - <<'PY'
+import sys
+from os.path import abspath, join
+
+R = abspath('.')
+sys.path.extend([R, join(R, 'lisdf')])
+
+from pigi_tools.replay_utils import run_replay, REPLAY_CONFIG_DEBUG, load_pigi_data
+from world_builder import actions
+from pybullet_tools.utils import set_color
+
+run_dir = join(R, 'artifacts', 'gpt55_chicken_soup_success')
+
+def load_without_plan(*args, **kwargs):
+    world, problem, exp_dir, run_dir2, commands, plan, body_map = load_pigi_data(*args, **kwargs)
+    return world, problem, exp_dir, run_dir2, commands, None, body_map
+
+def tolerant_change_link_color_transition(self, state):
+    set_color(self.body, self.color, self.link)
+    for key, attachment in state.attachments.items():
+        if not hasattr(key, 'body') or not hasattr(key, 'link'):
+            continue
+        if key.body == self.body and key.link == self.link:
+            child = getattr(attachment, 'child', None)
+            if child is not None and hasattr(child, 'body'):
+                set_color(child.body, self.color, getattr(child, 'link', None))
+    return state.new_state()
+
+actions.ChangeLinkColorEvent.transition = tolerant_change_link_color_transition
+
+run_replay(
+    REPLAY_CONFIG_DEBUG,
+    load_data_fn=load_without_plan,
+    given_path=run_dir,
+    use_gym=False,
+    save_mp4=True,
+    save_jpg=False,
+    camera_point=(3.1, 7.8, 3.1),
+    target_point=(0.5, 7.8, 1.0),
+)
+PY
+```
+
+The replay is written to:
+
+```text
+artifacts/gpt55_chicken_soup_success/replay.mp4
+```
+
+### One-Command Verification
+
+Run the focused regression suite from the workspace root, not from inside `pybullet_planning`, so Python resolves the correct `pddlstream/examples` package:
+
+```bash
+cd ..
+source ~/miniconda3/etc/profile.d/conda.sh
+conda activate kitchen
+
+PYTHONPATH="$(pwd)/kitchen-worlds/pddlstream:$(pwd)/pybullet_planning:$(pwd)/kitchen-worlds:$(pwd)/lisdf:$(pwd)/kitchen-worlds/pybullet_planning/motion:$PYTHONPATH" \
+python -m unittest \
+  pybullet_tools.test_general_streams.HandleGraspTests \
+  pybullet_tools.test_mobile_streams \
+  pybullet_tools.test_general_streams \
+  leap_tools.test_object_reducers \
+  vlm_tools.test_llamp_agent_sequence
+```
+
+Expected result:
+
+```text
+Ran 59 tests
+OK
+```
+
+### Re-Run The Memory-Backed GPT55 Policy
+
+To reproduce the successful planning run rather than only replay the saved commands, configure the GPT55 key locally. Do not commit the key.
+
+```bash
+mkdir -p ~/.config/vlm-tamp
+printf 'YOUR_GPT55_KEY_HERE\n' > ~/.config/vlm-tamp/gpt55_api_key.txt
+chmod 600 ~/.config/vlm-tamp/gpt55_api_key.txt
+```
+
+Then run from `pybullet_planning`:
+
+```bash
+source ~/miniconda3/etc/profile.d/conda.sh
+conda activate kitchen
+
+PYTHONPATH="$(pwd)/../kitchen-worlds/pddlstream:$(pwd):$(pwd)/../kitchen-worlds:$(pwd)/../lisdf:$(pwd)/../kitchen-worlds/pybullet_planning/motion:$PYTHONPATH" \
+python tutorials/test_vlm_tamp.py \
+  --problem test_kitchen_chicken_soup \
+  --api_class_name gpt55 \
+  --load_llm_memory artifacts/gpt55_chicken_soup_success \
+  --exp_subdir reproduce_gpt55_chicken_soup
+```
+
+Notes:
+
+- `--load_llm_memory` takes the directory containing `llm_memory.json`, not the JSON file path.
+- A fresh GPT55 run without memory can generate a different subgoal sequence and is not guaranteed to match this verified run.
+- The rendered replay may show visual interpenetration in some cabinet-door views because replay follows saved kinematic commands; it does not re-run physical contact simulation.
+
+### Reports For Review
+
+The Chinese handoff documents are:
+
+```text
+docs/superpowers/reports/2026-07-06-gpt55-vlm-tamp-work-summary.md
+docs/superpowers/reports/2026-07-06-vlm-tamp-source-fixes.md
+docs/superpowers/reports/2026-07-06-vlm-tamp-debug-records.md
+```
+
 This toolbox helps you solve long-horizon mobile manipulation problems using planning or policies. 
 
 It includes utility functions for
