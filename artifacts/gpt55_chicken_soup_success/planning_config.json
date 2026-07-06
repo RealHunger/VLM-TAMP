@@ -1,0 +1,255 @@
+{
+    "base_limits": {
+        "0": [
+            1,
+            5
+        ],
+        "1": [
+            3,
+            10
+        ],
+        "17": [
+            0,
+            3
+        ]
+    },
+    "system": "Linux",
+    "host": "reality-hunger",
+    "camera_zoomins": [],
+    "camera_poses": {},
+    "supporting_surfaces": {
+        "basin#1::faucet_platform": [
+            "faucet#1"
+        ],
+        "fridge#1::shelf_bottom": [
+            "cabbage"
+        ],
+        "counter#1::front_left_stove": [],
+        "braiserbody#1": [
+            "braiserlid#1"
+        ]
+    },
+    "supported_movables": {
+        "chicken-leg": "fridge#1::shelf_top",
+        "braiserlid#1": "braiserbody#1",
+        "braiserbody#1": "counter#1::indigo_tmp",
+        "cabbage": "fridge#1::shelf_bottom",
+        "salt-shaker": "counter#1::sektion",
+        "pepper-shaker": "counter#1::sektion",
+        "fork": "counter#1::indigo_drawer_top"
+    },
+    "attachments": {
+        "4": [
+            5,
+            -1,
+            [
+                [
+                    0.0,
+                    0.0,
+                    0.029925882816314697
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ]
+            ]
+        ],
+        "5": [
+            3,
+            35,
+            [
+                [
+                    0.09732663631439209,
+                    0.3517284393310547,
+                    0.09358501434326172
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.7071067690849304,
+                    0.7071067690849304
+                ]
+            ]
+        ],
+        "9": [
+            8,
+            2,
+            [
+                [
+                    0.0,
+                    0.15315747261047363,
+                    0.0
+                ],
+                [
+                    0.5,
+                    -0.5,
+                    -0.5,
+                    -0.5
+                ]
+            ]
+        ],
+        "1": [
+            10,
+            9,
+            [
+                [
+                    -0.053999900817871094,
+                    0.3777792453765869,
+                    0.15399998426437378
+                ],
+                [
+                    0.4006175696849823,
+                    0.582671046257019,
+                    0.582671046257019,
+                    -0.4006175696849823
+                ]
+            ]
+        ],
+        "11": [
+            10,
+            8,
+            [
+                [
+                    -0.03800010681152344,
+                    -0.17622071504592896,
+                    0.1679999828338623
+                ],
+                [
+                    -0.7059174180030823,
+                    0.04099518805742264,
+                    0.04099518805742264,
+                    0.7059174180030823
+                ]
+            ]
+        ],
+        "12": [
+            3,
+            0,
+            [
+                [
+                    0.2710000276565552,
+                    -0.5289998054504395,
+                    -0.241918683052063
+                ],
+                [
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0
+                ]
+            ]
+        ],
+        "13": [
+            3,
+            0,
+            [
+                [
+                    0.2639999985694885,
+                    -0.2969999313354492,
+                    -0.22991859912872314
+                ],
+                [
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0
+                ]
+            ]
+        ],
+        "14": [
+            3,
+            48,
+            [
+                [
+                    0.14100003242492676,
+                    -0.012000083923339844,
+                    -0.03299999237060547
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.9403762221336365,
+                    0.3401360809803009
+                ]
+            ]
+        ]
+    },
+    "body_to_name": {
+        "(10, 1)": "fridge#1::fridge_door",
+        "(10, None, 8)": "fridge#1::shelf_bottom",
+        "(10, None, 9)": "fridge#1::shelf_top",
+        "(3, 10)": "counter#1::chewie_door_right_joint",
+        "(3, 14)": "counter#1::chewie_door_left_joint",
+        "(3, 48)": "counter#1::indigo_drawer_top_joint",
+        "(3, None, 0)": "counter#1::sektion",
+        "(3, None, 27)": "counter#1::hitman_countertop",
+        "(3, None, 35)": "counter#1::indigo_tmp",
+        "(3, None, 4)": "counter#1::front_left_stove",
+        "(3, None, 48)": "counter#1::indigo_drawer_top",
+        "(3, None, 5)": "counter#1::front_right_stove",
+        "(5, None, 1)": "braiserbody#1::braiser_bottom",
+        "(6, 4)": "oven#1::knob_joint_2",
+        "(6, 5)": "oven#1::knob_joint_3",
+        "(7, 1)": "dishwasher#1::dishwasher_door",
+        "(7, None, 5)": "dishwasher#1::upper_shelf",
+        "(8, None, 2)": "basin#1::faucet_platform",
+        "(8, None, 3)": "basin#1::basin_bottom",
+        "(9, 3)": "faucet#1::joint_faucet_0",
+        "(9, 5)": "faucet#1::joint_faucet_1",
+        "0": "pr2robot",
+        "1": "chicken-leg",
+        "10": "fridge#1",
+        "11": "cabbage",
+        "12": "salt-shaker",
+        "13": "pepper-shaker",
+        "14": "fork",
+        "2": "living_room",
+        "3": "counter#1",
+        "4": "braiserlid#1",
+        "5": "braiserbody#1",
+        "6": "oven#1",
+        "7": "dishwasher#1",
+        "8": "basin#1",
+        "9": "faucet#1"
+    },
+    "config": "config_nvidia_kitchen.yaml",
+    "config_root": "/home/reality-hunger/long-horizon-manipulation/external/vlm-tamp-workspace/pybullet_planning/vlm_tools/configs",
+    "obs_camera_pose": [
+        [
+            2.9,
+            7,
+            3.3
+        ],
+        [
+            0.6532815098762512,
+            0.6532815098762512,
+            -0.27059802412986755,
+            -0.27059802412986755
+        ]
+    ],
+    "domain": "pddl_domains/mobile_v5_domain.pddl",
+    "stream": "pddl_domains/mobile_v5_stream.pddl",
+    "pddlstream_kwargs": {
+        "skeleton": "None",
+        "subgoals": "None",
+        "soft_subgoals": "False",
+        "fc": "None",
+        "collect_dataset": "True",
+        "lock": "True",
+        "preview": "False",
+        "max_solutions": "1",
+        "visualization": "False",
+        "log_failures": "False",
+        "evaluation_time": "30",
+        "downward_time": "10",
+        "stream_planning_timeout": "60",
+        "total_planning_timeout": "60",
+        "max_plans": "12",
+        "max_evaluation_plans": "12",
+        "max_complexity": "5",
+        "max_iterations": "4",
+        "debug": "False"
+    }
+}

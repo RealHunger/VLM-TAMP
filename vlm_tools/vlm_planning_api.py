@@ -24,7 +24,8 @@ from world_builder.world_utils import get_camera_image, make_camera_collage, \
     SURFACE, SPACE, MOVABLE
 from world_builder.world import World
 
-from vlm_tools.vlm_api import GPT4vApi, Claude3Api
+# from vlm_tools.vlm_api import GPT4vApi, Claude3Api
+from vlm_tools.vlm_api import GPT4vApi, Claude3Api, GPT55Api
 from vlm_tools.prompts_gpt4v import *
 # from vlm_tools.examples.prompts_playground import *
 from vlm_tools.visualize.viz_run_utils import output_html, launch_log_page, media_dir, content_dir
@@ -37,7 +38,9 @@ from vlm_tools.vlm_utils import plans_to_tree, rindex, export_tree_png, grow_bra
 
 
 def get_llamp_api(api_class_name):
-    if 'gpt' in api_class_name:
+    if 'gpt55' in api_class_name:
+        return GPT55PlanningApi
+    elif 'gpt' in api_class_name:
         return GPT4PlanningApi
     elif 'claude' in api_class_name:
         return Claude3PlanningApi
@@ -721,6 +724,14 @@ class GPT4PlanningApi(LLAMPApi):
     def parse_lines_into_lists_fn(self, string: str, **kwargs):
         return parse_lines_into_lists_gpt4(string, **kwargs)
 
+class GPT55PlanningApi(LLAMPApi):
+
+    def __init__(self, open_goal, vlm_kwargs=dict(), **kwargs):
+        super(GPT55PlanningApi, self).__init__(open_goal, **kwargs)
+        self.llm = GPT55Api(**vlm_kwargs)
+
+    def parse_lines_into_lists_fn(self, string: str, **kwargs):
+        return parse_lines_into_lists_gpt4(string, **kwargs)
 
 class Claude3PlanningApi(LLAMPApi):
 
@@ -730,6 +741,8 @@ class Claude3PlanningApi(LLAMPApi):
 
     def parse_lines_into_lists_fn(self, string: str, **kwargs):
         return parse_lines_into_lists_claude3(string, **kwargs)
+
+
 
 
 ###########################################################

@@ -68,8 +68,11 @@ streams:
   disable_movable_collision: false
   disable_base_collision: false
   top_grasp_tolerance: null # 0.8
-  use_all_grasps: false
+  # use_all_grasps: false
+  use_all_grasps: true
   num_grasps: 15
+  # use_learned_ir: true
+  use_learned_ir: false
   ir_max_attempts: 10
 
 ## pybullet related

@@ -300,13 +300,16 @@ class GPT4vApi(VLMApi):
             print(f"setting timeout_handler for {num}")
             raise Exception("TIMEOUT")
 
-        gpt_query_timeout = 10
+        #gpt_query_timeout = 10
+        gpt_query_timeout = 120
         signal.signal(signal.SIGALRM, timeout_handler)
         signal.alarm(gpt_query_timeout)
         import traceback
         try:
-            response = requests.post("https://api.openai.com/v1/chat/completions",
-                                     headers=headers, json=payload).json()
+            # response = requests.post("https://api.openai.com/v1/chat/completions",
+            #                          headers=headers, json=payload).json()
+            api_url = getattr(self, 'api_url', "https://api.openai.com/v1/chat/completions")
+            response = requests.post(api_url, headers=headers, json=payload).json()
         except Exception as ex:
             traceback.print_exc()
             print(f"\nTimed out GPT-query in {gpt_query_timeout} sec\n")
@@ -333,6 +336,26 @@ class GPT4vApi(VLMApi):
             contents.append(answer)
 
         return contents
+
+
+class GPT55Api(GPT4vApi):
+
+    name = 'GPT-5.5'
+
+    def __init__(self, **kwargs):
+        # super(GPT55Api, self).__init__(**kwargs)
+        VLMApi.__init__(self, **kwargs)
+
+        key_file = os.path.expanduser('~/.config/vlm-tamp/gpt55_api_key.txt')
+        if not os.path.isfile(key_file):
+            raise RuntimeError(f'Must create GPT-5.5 key file: {key_file}')
+        with open(key_file, 'r') as f:
+            self.api_key = f.read().strip()
+
+        self.model_name = "gpt-5.5"
+        self.api_url = "https://api.pezayo.com/v1/chat/completions"
+
+
 
 
 # ########################## FOR TESTING WHEN GPT-4V API is yet released ###############################

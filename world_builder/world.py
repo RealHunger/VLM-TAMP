@@ -1403,6 +1403,8 @@ class World(WorldBase):
 
     def refine_marker_obstacles(self, marker, obstacles):
         ## for steerables
+        if marker not in self.BODY_TO_OBJECT:
+            return obstacles
         parent = self.BODY_TO_OBJECT[marker].grasp_parent
         if parent is not None and parent in obstacles:
             obstacles.remove(parent)

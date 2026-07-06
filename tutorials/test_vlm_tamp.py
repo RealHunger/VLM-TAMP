@@ -36,6 +36,9 @@ def get_vlm_tamp_agent_parser_given_config(conf):
     ## Note: in order to use other model names in GPT or Claude family, need to modify `vlm_tools/vlm_api.py` then verify that prompts and parsing functions still work.
     parser.add_argument('--vlm_type', type=str, choices=["gpt4v", "claude3"],
                         help='Specifies the VLM APT class defined in vlm_tools.vlm_api')
+    # parser defaults to gpt4 inside cogarch args; expose provider override here.
+    parser.add_argument('--api_class_name', type=str, default='gpt4',
+                        choices=['gpt4', 'claude3', 'gpt55'])
     return parser
 
 

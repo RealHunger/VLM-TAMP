@@ -7,9 +7,45 @@ sys.path.extend([
 ])
 
 import json
+import unittest
 
 from vlm_tools.vlm_api import GPT4vApi
-from vlm_tools.vlm_utils import EXP_DIR
+from vlm_tools.vlm_utils import EXP_DIR, repair_facts
+
+
+class FakeWorld(object):
+
+    def get_type(self, body):
+        types = {
+            12: ['condiment'],
+            (3, None, 0): ['space'],
+        }
+        return types.get(body, [])
+
+
+class TestRepairFacts(unittest.TestCase):
+
+    def test_salt_in_cabinet_stays_place_goal(self):
+        g, p = repair_facts(
+            FakeWorld(),
+            ['in', 12, (3, None, 0)],
+            ['in', 'salt shaker', 'cabinet'],
+            subgoal='in(salt shaker, cabinet)',
+        )
+
+        self.assertEqual(['in', 12, (3, None, 0)], g)
+        self.assertEqual(['in', 'salt shaker', 'cabinet'], p)
+
+    def test_pepper_in_cabinet_stays_place_goal(self):
+        g, p = repair_facts(
+            FakeWorld(),
+            ['in', 13, (3, None, 0)],
+            ['in', 'pepper shaker', 'cabinet'],
+            subgoal='in(pepper shaker, cabinet)',
+        )
+
+        self.assertEqual(['in', 13, (3, None, 0)], g)
+        self.assertEqual(['in', 'pepper shaker', 'cabinet'], p)
 
 
 def test_gpt4v():

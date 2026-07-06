@@ -316,7 +316,8 @@ def repair_facts(world, g, p, subgoal=None):
     #         print('[repair_facts]')
 
     ## TODO: hack for correcting VLM translation mistakes
-    if subgoal in ['in(chicken leg, fridge shelf)', 'in(salt shaker, cabinet)', 'in(pepper shaker, cabinet)']:
+    # if subgoal in ['in(chicken leg, fridge shelf)', 'in(salt shaker, cabinet)', 'in(pepper shaker, cabinet)']:
+    if subgoal in ['in(chicken leg, fridge shelf)']:
         pred = 'picked'
         g = [pred, g[1]]
         p = [pred, p[1]]

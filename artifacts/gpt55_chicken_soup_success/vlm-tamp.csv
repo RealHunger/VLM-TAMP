@@ -1,0 +1,20 @@
+idx,goal,task_idx,status,plan_len,planning_time,planning_objects,object_reducer,planning_node,agent_state
+1,"['openedjoint([(10, 1)])']",1,already,0,0,,object-related,"1_a_['openedjoint', 'fridge door']",
+2,['picked([1])'],2,solved,2,10.9541,1 (graspable: 1),object-related,"2_a_['picked', 'chicken leg']",
+3,"['in([1, 5])']",3,solved,5,45.7865,"7 (graspable: 1, surface: 5, space: 1)",object-related,"3_a_['in', 'chicken leg', 'pot body']",agent_state_2.pkl
+4,"['on([5, (8, None, 3)])']",4,solved,4,12.5842,"4 (graspable: 1, surface: 2, space: 1)",object-related,"4_a_['on', 'pot body', 'kitchen sink']",agent_state_3.pkl
+5,"['openedjoint([(9, 3)])']",5,solved,2,33.6029,1 (joint: 1),object-related,"5_a_['openedjoint', 'faucet handle']",agent_state_4.pkl
+6,"['closedjoint([(9, 3)])']",6,solved,2,1.096,1 (joint: 1),object-related,"6_a_['closedjoint', 'faucet handle']",agent_state_5.pkl
+7,"['on([5, (3, None, 35)])']",7,failed,0,2.2714,"4 (graspable: 1, surface: 2, space: 1)",object-related,"7_a_['on', 'pot body', 'counter top on the right']",agent_state_6.pkl
+8,"['on([5, (3, None, 35)])']",7,solved,4,30.5807,"4 (graspable: 1, surface: 2, space: 1)",custom_add=,"7_a_['on', 'pot body', 'counter top on the right']",agent_state_6b.pkl
+9,['picked([12])'],8,solved,2,5.0015,"2 (graspable: 1, space: 1)",object-related,"8_a_['picked', 'salt shaker']",agent_state_7.pkl
+10,"['sprinkledto([12, 5])']",9,solved,2,14.291,"6 (graspable: 1, surface: 4, space: 1)",object-related,"9_a_['sprinkledto', 'salt shaker', 'pot body']",agent_state_8.pkl
+11,"['in([12, (3, None, 0)])']",10,solved,2,6.57,"5 (graspable: 1, surface: 3, space: 1)",object-related,"10_a_['in', 'salt shaker', 'cabinet']",agent_state_9.pkl
+12,['picked([13])'],11,solved,2,0.7771,"2 (graspable: 1, space: 1)",object-related,"11_a_['picked', 'pepper shaker']",agent_state_10.pkl
+13,"['sprinkledto([13, 5])']",12,solved,2,8.4883,"6 (graspable: 1, surface: 4, space: 1)",object-related,"12_a_['sprinkledto', 'pepper shaker', 'pot body']",agent_state_11.pkl
+14,"['in([13, (3, None, 0)])']",13,solved,2,4.2709,"5 (graspable: 1, surface: 3, space: 1)",object-related,"13_a_['in', 'pepper shaker', 'cabinet']",agent_state_12.pkl
+15,"['on([5, (3, None, 5)])']",14,solved,4,6.5114,"5 (graspable: 1, surface: 3, space: 1)",object-related,"14_a_['on', 'pot body', 'stove on the right']",agent_state_13.pkl
+16,['picked([4])'],15,solved,2,5.4306,1 (graspable: 1),object-related,"15_a_['picked', 'pot lid']",agent_state_14.pkl
+17,"['on([4, 5])']",16,solved,2,4.1522,"6 (graspable: 1, surface: 4, space: 1)",object-related,"16_a_['on', 'pot lid', 'pot body']",agent_state_15.pkl
+18,"['openedjoint([(6, 4)])']",17,solved,2,1.095,1 (joint: 1),object-related,"17_a_['openedjoint', 'stove knob on the right']",agent_state_17.pkl
+,1.0 (17 / 17),1.0 (17 / 17),1.0 (16 / 16),41,193.46,191.19 (effective time),2.27 (wasted time),,
