@@ -5,6 +5,8 @@ This directory contains the compact verification artifact for the successful GPT
 - `vlm-tamp.csv`: final task-level planner result, ending with `1.0 (17 / 17)`.
 - `replay.mp4`: PyBullet replay rendered from saved commands.
 - `planning_config.json`: configuration saved with the successful run.
+- `llm_memory.json`: saved GPT55 subgoal memory used by the successful run.
+- `agent_memory.json`: saved agent-side execution memory for the successful run.
 
 Original local run directory:
 

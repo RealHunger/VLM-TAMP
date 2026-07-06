@@ -1,0 +1,275 @@
+{
+   "load_memory": "/home/reality-hunger/long-horizon-manipulation/external/vlm-tamp-workspace/experiments/verify_full_no_stream_diag_260706/260706_023820_vlm-tamp",
+   "load_agent_state": null,
+   "seed": 163381,
+   "objects": [
+      1,
+      [
+         3,
+         10
+      ],
+      [
+         3,
+         14
+      ],
+      [
+         3,
+         null,
+         0
+      ],
+      [
+         3,
+         null,
+         4
+      ],
+      [
+         3,
+         null,
+         5
+      ],
+      [
+         3,
+         null,
+         27
+      ],
+      [
+         3,
+         null,
+         35
+      ],
+      4,
+      5,
+      [
+         5,
+         null,
+         1
+      ],
+      [
+         6,
+         4
+      ],
+      [
+         6,
+         5
+      ],
+      [
+         8,
+         null,
+         3
+      ],
+      [
+         9,
+         3
+      ],
+      10,
+      [
+         10,
+         1
+      ],
+      [
+         10,
+         null,
+         9
+      ],
+      12,
+      13
+   ],
+   "observed": "the pot lid is on the stove on the left,\nthe pot body is on the counter top on the right,\nthe chicken leg is on the fridge shelf,\nthe salt shaker is in the cabinet,\nthe pepper shaker is in the cabinet,\ncabinet right door is partially open,\ncabinet left door is partially open,\nfridge door is partially open,\nstove knob on the right is turned off,\nstove knob on the left is turned off,\nfaucet handle is turned off",
+   "replan_memory": [],
+   "goal": "make chicken soup",
+   "lists_of_subgoals": [
+      [
+         "start",
+         [
+            "openedjoint",
+            [
+               10,
+               1
+            ]
+         ],
+         [
+            "picked",
+            1
+         ],
+         [
+            "in",
+            1,
+            5
+         ],
+         [
+            "on",
+            5,
+            [
+               8,
+               null,
+               3
+            ]
+         ],
+         [
+            "openedjoint",
+            [
+               9,
+               3
+            ]
+         ],
+         [
+            "closedjoint",
+            [
+               9,
+               3
+            ]
+         ],
+         [
+            "on",
+            5,
+            [
+               3,
+               null,
+               35
+            ]
+         ],
+         [
+            "picked",
+            12
+         ],
+         [
+            "sprinkledto",
+            12,
+            5
+         ],
+         [
+            "in",
+            12,
+            [
+               3,
+               null,
+               0
+            ]
+         ],
+         [
+            "picked",
+            13
+         ],
+         [
+            "sprinkledto",
+            13,
+            5
+         ],
+         [
+            "in",
+            13,
+            [
+               3,
+               null,
+               0
+            ]
+         ],
+         [
+            "on",
+            5,
+            [
+               3,
+               null,
+               5
+            ]
+         ],
+         [
+            "picked",
+            4
+         ],
+         [
+            "on",
+            4,
+            5
+         ],
+         [
+            "openedjoint",
+            [
+               6,
+               4
+            ]
+         ]
+      ]
+   ],
+   "lists_of_subgoals_to_print": [
+      [
+         [
+            "openedjoint",
+            "fridge door"
+         ],
+         [
+            "picked",
+            "chicken leg"
+         ],
+         [
+            "in",
+            "chicken leg",
+            "pot body"
+         ],
+         [
+            "on",
+            "pot body",
+            "kitchen sink"
+         ],
+         [
+            "openedjoint",
+            "faucet handle"
+         ],
+         [
+            "closedjoint",
+            "faucet handle"
+         ],
+         [
+            "on",
+            "pot body",
+            "counter top on the right"
+         ],
+         [
+            "picked",
+            "salt shaker"
+         ],
+         [
+            "sprinkledto",
+            "salt shaker",
+            "pot body"
+         ],
+         [
+            "in",
+            "salt shaker",
+            "cabinet"
+         ],
+         [
+            "picked",
+            "pepper shaker"
+         ],
+         [
+            "sprinkledto",
+            "pepper shaker",
+            "pot body"
+         ],
+         [
+            "in",
+            "pepper shaker",
+            "cabinet"
+         ],
+         [
+            "on",
+            "pot body",
+            "stove on the right"
+         ],
+         [
+            "picked",
+            "pot lid"
+         ],
+         [
+            "on",
+            "pot lid",
+            "pot body"
+         ],
+         [
+            "openedjoint",
+            "stove knob on the right"
+         ]
+      ]
+   ]
+}
