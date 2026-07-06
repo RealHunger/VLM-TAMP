@@ -1,26 +1,26 @@
 # Long-Horizon Manipulation Planning Toolbox
 
-## GPT55 Chicken Soup Reproduction
+## GPT55 Chicken Soup 一键复刻
 
-This fork contains the GPT55 VLM-TAMP chicken soup fixes, verification artifacts, and debugging notes from the July 2026 run.
+这个 fork 包含 2026 年 7 月 GPT55 VLM-TAMP chicken soup 任务的修复代码、验证结果和调试记录。
 
-The compact successful run artifact is saved under:
+成功 run 的精简结果文件保存在：
 
 ```text
 artifacts/gpt55_chicken_soup_success/
 ```
 
-It includes:
+目录内容包括：
 
-- `vlm-tamp.csv`: final planner result, ending with `1.0 (17 / 17)`.
-- `replay.mp4`: rendered PyBullet replay of the successful saved commands.
-- `planning_config.json`: saved planning configuration.
-- `llm_memory.json`: GPT55 subgoal memory used by the successful run.
-- `agent_memory.json`: agent-side execution memory for the successful run.
+- `vlm-tamp.csv`：最终 planner 结果，最后一行是 `1.0 (17 / 17)`。
+- `replay.mp4`：用保存下来的 commands 渲染出的 PyBullet 回放视频。
+- `planning_config.json`：成功 run 保存下来的规划配置。
+- `llm_memory.json`：成功 run 使用的 GPT55 子目标记忆。
+- `agent_memory.json`：成功 run 使用的 agent 侧执行记忆。
 
-### One-Command Replay
+### 一键回放
 
-From the workspace root that contains `pybullet_planning`, `kitchen-worlds`, `lisdf`, and `motion_planners`, run:
+在包含 `pybullet_planning`、`kitchen-worlds`、`lisdf` 和 `motion_planners` 的 workspace 根目录下运行：
 
 ```bash
 cd pybullet_planning
@@ -70,15 +70,15 @@ run_replay(
 PY
 ```
 
-The replay is written to:
+回放视频会写到：
 
 ```text
 artifacts/gpt55_chicken_soup_success/replay.mp4
 ```
 
-### One-Command Verification
+### 一键验证
 
-Run the focused regression suite from the workspace root, not from inside `pybullet_planning`, so Python resolves the correct `pddlstream/examples` package:
+在 workspace 根目录运行下面的 focused regression suite。注意不要在 `pybullet_planning` 目录里面运行，否则 Python 可能会优先解析当前仓库自己的 `examples` 包，导致找不到正确的 `pddlstream/examples`。
 
 ```bash
 cd ..
@@ -94,16 +94,16 @@ python -m unittest \
   vlm_tools.test_llamp_agent_sequence
 ```
 
-Expected result:
+预期结果：
 
 ```text
 Ran 59 tests
 OK
 ```
 
-### Re-Run The Memory-Backed GPT55 Policy
+### 重新运行 memory-backed GPT55 policy
 
-To reproduce the successful planning run rather than only replay the saved commands, configure the GPT55 key locally. Do not commit the key.
+如果不只是回放保存好的 commands，而是想重新跑一次带 memory 的 GPT55 planning，需要先在本地配置 GPT55 key。不要把 key 提交到 GitHub。
 
 ```bash
 mkdir -p ~/.config/vlm-tamp
@@ -111,7 +111,7 @@ printf 'YOUR_GPT55_KEY_HERE\n' > ~/.config/vlm-tamp/gpt55_api_key.txt
 chmod 600 ~/.config/vlm-tamp/gpt55_api_key.txt
 ```
 
-Then run from `pybullet_planning`:
+然后在 `pybullet_planning` 目录下运行：
 
 ```bash
 source ~/miniconda3/etc/profile.d/conda.sh
@@ -125,15 +125,15 @@ python tutorials/test_vlm_tamp.py \
   --exp_subdir reproduce_gpt55_chicken_soup
 ```
 
-Notes:
+注意事项：
 
-- `--load_llm_memory` takes the directory containing `llm_memory.json`, not the JSON file path.
-- A fresh GPT55 run without memory can generate a different subgoal sequence and is not guaranteed to match this verified run.
-- The rendered replay may show visual interpenetration in some cabinet-door views because replay follows saved kinematic commands; it does not re-run physical contact simulation.
+- `--load_llm_memory` 传的是包含 `llm_memory.json` 的目录，不是 JSON 文件本身。
+- 不带 memory 的 fresh GPT55 run 可能生成不同的子目标序列，不保证和这个已验证成功 run 一致。
+- 回放视频在少数柜门视角里可能看到视觉穿模，因为 replay 是按保存的运动学 commands 播放，不会重新运行物理接触仿真。
 
-### Reports For Review
+### 给学长看的中文报告
 
-The Chinese handoff documents are:
+中文交接文档在：
 
 ```text
 docs/superpowers/reports/2026-07-06-gpt55-vlm-tamp-work-summary.md
