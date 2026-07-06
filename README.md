@@ -131,7 +131,7 @@ python tutorials/test_vlm_tamp.py \
 - 不带 memory 的 fresh GPT55 run 可能生成不同的子目标序列，不保证和这个已验证成功 run 一致。
 - 回放视频在少数柜门视角里可能看到视觉穿模，因为 replay 是按保存的运动学 commands 播放，不会重新运行物理接触仿真。
 
-### 给学长看的中文报告
+### 中文交接报告
 
 中文交接文档在：
 
