@@ -7,6 +7,8 @@ This directory contains the compact verification artifact for the successful GPT
 - `planning_config.json`: configuration saved with the successful run.
 - `llm_memory.json`: saved GPT55 subgoal memory used by the successful run.
 - `agent_memory.json`: saved agent-side execution memory for the successful run.
+- `time.json`: detailed per-subgoal timing and plan skeleton records.
+- `timing_analysis.md`: summarized timing table by subgoal and task stage.
 
 Original local run directory:
 
